@@ -1,18 +1,27 @@
 import React from "react";
-import logo from "./logo.svg";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "./App.css";
+import 'react-bulma-components/dist/react-bulma-components.min.css';
+
+import WelcomePage from "./pages/WelcomePage";
+import TasksPage from "./pages/TasksPage";
+import RoutinesPage from "./pages/RoutinesPage";
 
 function App() {
   return (
-    <div className="App">
-      <div className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <h2>Welcome to React</h2>
-      </div>
-      <p className="App-intro">
-        To get started, edit <code>src/App.js</code> and save to reload.
-      </p>
-    </div>
+    <Router>
+      <Switch>
+        <Route exact path={"/"}>
+          <WelcomePage />
+        </Route> 
+        <Route exact path={"/tasks"}>
+          <TasksPage />
+        </Route>
+        <Route exact path={"/routines"}>
+          <RoutinesPage />
+        </Route>
+      </Switch>
+    </Router> 
   );
 }
 

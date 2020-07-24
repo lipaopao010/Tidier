@@ -22,6 +22,8 @@
     "express": "^4.16.3",
     "if-env": "^1.0.4",
     "mongoose": "^5.9.25",
-    "moongoose": "0.0.5"
+    "moongoose": "0.0.5",
+    "react-bulma-components": "^3.4.0",
+    "react-router-dom": "^5.2.0"
   }
 }

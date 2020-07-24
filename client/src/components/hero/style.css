@@ -1,0 +1,16 @@
+.Background{
+    background-image: url(../../assets/img/backgroud1.jpg);
+    background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+  width: 100%;
+
+    
+};
+
+
+.welcome1{
+    background-color: rgb(198, 167, 255);
+
+}
