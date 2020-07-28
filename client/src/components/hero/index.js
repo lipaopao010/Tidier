@@ -29,7 +29,7 @@ export default function HeroSection (){
                         </Heading>
  
                         <p align="center">
-                        <Button align="center">
+                        <Button align="center" renderAs="a" href="/tasks">
                             Start your task today!
                         </Button>
                         </p>
