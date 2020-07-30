@@ -23,14 +23,14 @@ export default function Nav(){
 
 
     return (
-      <Navbar>
+      <Navbar active={true}>
         <Navbar.Brand>
           <Navbar.Item renderAs="a" href="/">
             <img src={logo} alt="Tidier logo" width="112" height="28" />
           </Navbar.Item>
         </Navbar.Brand>
 
-         <Navbar.Menu >
+         <Navbar.Menu is-active>
          
           <Navbar.Container position="end">
             <Navbar.Item  onClick={logout}>

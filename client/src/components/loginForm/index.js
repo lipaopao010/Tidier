@@ -46,7 +46,7 @@ function LoginForm() {
         }
       )
       .then((response) => {
-        history.push("/welcome");
+        history.push("/tasks");
       })
       .catch((err) => {
         // not authenticated

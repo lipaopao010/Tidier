@@ -2,7 +2,7 @@ import React from "react";
 import PublicMaster from "./layout/public/publicMaster";
 import LoginForm from "../components/loginForm";
 
-function Homepage(props) {
+function Loginpage(props) {
   return (
   
       <PublicMaster style={{ height: "100%" }}>
@@ -14,4 +14,4 @@ function Homepage(props) {
   );
 }
 
-export default Homepage;
+export default Loginpage;

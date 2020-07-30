@@ -5,16 +5,20 @@ import { Button, Columns } from 'react-bulma-components';
 
 export default function WeeklyRoutineItem({ 
     _id,
+    dayofWeek,
     name,
     details, 
     onDelete,
     onUpdate,
   onAdd,
   onComplete,
-  saveForLater
+  
 }){
     return (
         <Columns>
+        <Columns.Column size={1}>
+          <p> {dayofWeek} :</p>
+        </Columns.Column>
       <Columns.Column size={8}>
         <p className="bd-notification">{name}</p>
         <p >{details}</p>
@@ -27,7 +31,7 @@ export default function WeeklyRoutineItem({
       {onUpdate &&<Button onClick={()=>{onUpdate(_id)}}>EDIT</Button>}
       </Columns.Column>
       <Columns.Column size={2}>
-      {saveForLater && <Button onClick={()=>{saveForLater(_id)}}>LATER</Button>}
+      
       {onDelete &&<Button onClick={()=>{onDelete(_id)}}>DELETE</Button>}
       </Columns.Column>
     </Columns>

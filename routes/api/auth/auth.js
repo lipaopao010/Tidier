@@ -2,7 +2,7 @@ const express = require('express');
 const passport = require('./../../../config/passport');
 const validator = require('validator');
 const User = require('../../../models/Users');
-const addDefaultRoutine = require('./../../../scripts/initialData')
+const addDefaultRoutine = require('../../../scripts/initialData')
 
 const router = express.Router();
 
@@ -57,7 +57,7 @@ router.post('/register', (req, res, next) => {
               console.log("here")
               console.log(user._id)
               // TODO: add the defualt routines to user
-              //addDefaultRoutine(user._id)
+              addDefaultRoutine(user._id)
 
               res.json({
                   data: user
@@ -107,7 +107,7 @@ router.post('/login',  (req, res, next) => {
 });
 
 router.get('/logout', (req, res) => {
-    console.log('heyyyy');
+    console.log('you are log out');
     req.logout();
     req.session.destroy((err) => {
         if (err){

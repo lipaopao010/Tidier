@@ -46,7 +46,7 @@ function RegisterForm() {
         withCredentials: true,
       })
       .then((res) => {
-        history.push("/welcome");
+        history.push("/tasks");
       })
       .catch((err) => {
         console.log(err.response);

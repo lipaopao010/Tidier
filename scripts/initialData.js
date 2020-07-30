@@ -112,49 +112,19 @@ initialData = [
   
 ];
 
-// async function insertData(user_id, routinesToAdd){
-//     // creates a new routine with a user_id
-//     const newRoutine = await Routine.create({ user_id });
-//     newRoutine.routines.push(...routinesToAdd)
-//     await routine.save()
-// }
 
-// initialData.map(eachRoutine=>({...eachRoutine, user_id:}))
-
-// Results.forEach(function (element) {
-//     element.Active = "false";
-//   });
-// function  addDefaultRoutine(newUser){
-    
-//     const objectId = mongoose.Types.ObjectId(newUser);
-//     console.log(objectId)
-//       initialData.push({user_id:objectId});
-//       console.log(initialData);
-//     db.Routines.insertMany(initialData)
-    
-//   .then(() => {
-//     console.log(" inital routines inserted!");
-//     process.exit(0);
-//   })
-//   .catch((err) => {
-//     console.error(err);
-//     process.exit(1);
-//   })
-// }
-
-db.Routines.remove({})
-  .then(() => db.Routines.insertMany(initialData))
+function  addDefaultRoutine(user_id){
+  const userRoutines= initialData.map(eachRoutine=>({...eachRoutine, user_id}))
+  db.Routines.insertMany(userRoutines)
   .then(() => {
-    console.log(" dara seed records inserted!");
-    process.exit(0);
+    console.log(" inital routines inserted!");
   })
-  .catch(err => {
+  .catch((err) => {
     console.error(err);
-    process.exit(1);
-  });
+ 
+  })
+}
+    
 
 
-
-
-
-// module.exports = addDefaultRoutine;
+module.exports = addDefaultRoutine;

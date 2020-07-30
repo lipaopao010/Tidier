@@ -6,10 +6,7 @@ import { Footer, Container, Hero, Content } from 'react-bulma-components';
 export default function FooterSection (){
     return(
 
-    <Hero size="fullheight">
-      <Hero.Head renderAs="header" />
-      <Hero.Body />
-      <Hero.Footer>
+    
         <Footer>
           <Container>
             <Content style={{ textAlign: 'center' }}>
@@ -19,6 +16,5 @@ export default function FooterSection (){
             </Content>
           </Container>
         </Footer>
-      </Hero.Footer>
-    </Hero>
+    
   )}

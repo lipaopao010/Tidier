@@ -4,6 +4,7 @@ const whitelist = [
     // config.appUrl,
     "*",
     "http://localhost:3000",
+    undefined,
     "localhost:3000"
 ];
 
