@@ -4,7 +4,7 @@ import { Button, Form } from 'react-bulma-components';
 const { Input, Field, Control} = Form;
 
 
-export default function AddNew({addNewDayRoutine}) {
+export default function AddNewDay({addNewDayRoutine}) {
     const [name, setName] = useState("");
     const [details, setDetails] = useState("");
    

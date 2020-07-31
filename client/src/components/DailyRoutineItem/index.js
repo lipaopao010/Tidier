@@ -1,31 +1,44 @@
 import React from "react";
-import { Button, Columns} from "react-bulma-components";
-import DetailSection from '../DetailSection';
+import { Button, Columns } from "react-bulma-components";
+import DetailSection from "../DetailSection";
+
 export default function DailyRoutineItem({
   _id,
   name,
   details,
-  deleteDayRoutine,
-  onUpdate,
+  deleteRoutine,
+  editDayRoutine,
   onComplete,
-  
 }) {
   return (
     <Columns>
       <Columns.Column size={8}>
         <p className="bd-notification">{name}</p>
-        <DetailSection details={details}/>
+        <DetailSection details={details} />
       </Columns.Column>
-      
-       
-      
+
       <Columns.Column size={2}>
-      {onComplete &&<Button onClick={()=>{onComplete(_id)}}>DONE</Button>}
-      {onUpdate &&<Button onClick={()=>{onUpdate(_id)}}>EDIT</Button>}
+        {onComplete && (
+          <Button
+            onClick={() => {
+              onComplete(_id);
+            }}
+          >
+            DONE
+          </Button>
+        )}
+        {/* {editDayRoutine &&<Button onClick={()=>{editDayRoutine(_id)}}>EDIT</Button>} */}
       </Columns.Column>
       <Columns.Column size={2}>
-      
-      {deleteDayRoutine &&<Button onClick={()=>{deleteDayRoutine(_id)}}>DELETE</Button>}
+        {deleteRoutine && (
+          <Button
+            onClick={() => {
+              deleteRoutine(_id);
+            }}
+          >
+            DELETE
+          </Button>
+        )}
       </Columns.Column>
     </Columns>
   );

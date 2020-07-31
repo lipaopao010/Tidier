@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "react-bulma-components/dist/react-bulma-components.min.css";
 import AppMaster from "./layout/app/appMaster";
-import { Box } from 'react-bulma-components';
+import { Box, Heading} from "react-bulma-components";
 import FooterSection from "../components/FooterSection";
 import DailyRoutines from "../components/DailyRoutines";
 import WeeklyRoutines from "../components/WeeklyRoutines";
@@ -16,28 +16,28 @@ function TasksPage() {
   //   apiurl = '/'
   // }
 
-  // need a function to select the task according to date
-  // isCompleted is false
-  function getWeeklyTasks() {
-    const weekdayToday = moment().format("dddd");
-    axios
-      .get("/api/routines/week?day=" + weekdayToday, {
-        withCredentials: true,
-      })
-      .then((res) =>
-        setweeklyTasks(
-          res.data.map((weeklyTask) => ({
-            ...weeklyTask,
-            // onDelete,onUpdate
-          }))
-        )
+  //FUNCTIONS FOR THIS PAGE
+  async function onComplete(itemId) {
+    await axios
+      .patch(
+        `/api/routines/${itemId}`,
+        { lastCompletedAt: new Date() },
+        {
+          withCredentials: true,
+        }
       )
+      .then((response) => {
+        console.log(response);
+        console.log("complete time is recorded!");
+      })
       .catch((err) => console.log(err));
   }
 
- 
-  //FUNCTIONS FOR THIS PAGE
 
+  // functions for the status
+
+  let dayBoundary = moment().startOf("day").toDate()
+  //   return moment(this.lastCompletedAt) > boundary
   // TODAY'S TASKS:
   // 1. LOAD ALL THE DAILY TASKS "UNDONE"--"UNDONE"
   async function getdailyTasks() {
@@ -45,15 +45,22 @@ function TasksPage() {
       .get("/api/routines/day", {
         withCredentials: true,
       })
-      .then((res) =>
+      .then((res) => {
+        const undoneDayTasks = res.data.filter(
+          (dayTask) => (dayTask.status = "undone")
+        );
+
+        //console.log(undoneDayTasks),
+
         setdailyTasks(
-          res.data.map((dailyTask) => ({
+          undoneDayTasks.map((dailyTask) => ({
             ...dailyTask,
 
-            // DONE
+            onComplete,
           }))
-        )
-      )
+        );
+        console.log("get daily tasks");
+      })
       .catch((err) => console.log(err));
   }
 
@@ -61,7 +68,27 @@ function TasksPage() {
     getdailyTasks();
     getWeeklyTasks();
   }, []);
+
   // 2. LOAD ALL THE WEEKLY TASKS "UNDONE"--"UNDONE" & DAY OF THIS WEEK
+  function getWeeklyTasks() {
+    const weekdayToday = moment().format("dddd");
+    console.log(weekdayToday);
+    axios
+      .get("/api/routines/week?day=" + weekdayToday, {
+        withCredentials: true,
+      })
+      .then((res) =>{
+      console.log("get weekly task for today");
+      console.log(res.data)
+        setweeklyTasks(
+          res.data.map((weeklyTask) => ({
+            ...weeklyTask,
+            
+          }))
+        )}
+      )
+      .catch((err) => console.log(err));
+  }
   // 3. LOAD ALL OTHER ROUTINES "UNDONE" --"UNDONE" & OF CURRENT DAY
 
   // TASKS FOR LATER:
@@ -72,9 +99,11 @@ function TasksPage() {
     <AppMaster>
       <Box>
         <DailyRoutines dailyRoutines={dailyTasks} />
-
         <WeeklyRoutines weeklyRoutines={weeklyTasks} />
       </Box>
+
+      <Box><Heading>Task for later</Heading></Box>
+
       <FooterSection />
     </AppMaster>
   );

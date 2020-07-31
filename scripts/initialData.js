@@ -77,6 +77,7 @@ initialData = [
     type: "week",
     name: "Catch-up day",
     details: "do anything left during the week!",
+    dayofWeek: "Friday",
     startDate: moment().day("Friday"),
     user_id: mongoose.Types.ObjectId("5f1faa93dc5c13d0dfdd4311")
   },
@@ -84,6 +85,7 @@ initialData = [
     type: "week",
     name: "Sheets and towel day",
     details: "wash all the sheets and towels",
+    dayofWeek: "Saturday",
     startDate: moment().day("Saturday"),
     user_id: mongoose.Types.ObjectId("5f1faa93dc5c13d0dfdd4311")
   },
@@ -91,6 +93,7 @@ initialData = [
     type: "week",
     name: "Take a break",
     details: "enjoy the break and just do the daily routines!",
+    dayofWeek: "Sunday",
     startDate: moment().day("Sunday"),
     user_id: mongoose.Types.ObjectId("5f1faa93dc5c13d0dfdd4311")
   },

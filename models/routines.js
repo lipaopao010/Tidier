@@ -106,17 +106,17 @@ routinesSchema.virtual('status').get(function(){
 
 
 // this is for the "done" button
-// for the daily and weekly tasks
-
-routinesSchema.virtual('isCompleted').get(function(){
-  // lastCompledAt will be updated once clicked " DONE " button.
+// for the daily and weekly tasks// lastCompledAt will be updated once clicked " DONE " button.
   // check if last completed is after boundary, if yes, that means task has completed
 
+// routinesSchema.virtual('isCompleted').get(function(){
   
-  let boundary = moment().startOf(this.type).toString()
-  return moment(this.lastCompletedAt) > boundary;
+
+  
+//   let boundary = moment().startOf(this.type).toString()
+//   return moment(this.lastCompletedAt) > boundary;
  
-})
+// })
 
 
 

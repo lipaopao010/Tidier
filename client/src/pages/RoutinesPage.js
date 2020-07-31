@@ -10,13 +10,12 @@ import WeeklyRoutines from "../components/WeeklyRoutines";
 import FooterSection from "./../components/FooterSection";
 import { Box, Heading, Button } from "react-bulma-components";
 
-function RoutinesPage() {
+export default function RoutinesPage() {
   const [dailyRoutines, setdailyRoutines] = useState([]);
-  const [value, setValue] = useState("");
+  const [weeklyRoutines, setweeklyRoutines] = useState([]);
+ 
 
-  // NEW FUNCTION TO ADD ROUTINES
-
-  // 1. LOAD ALL THE DAILY ROUTINES
+  // 1. LOAD ALL THE DAILY ROUTINES--done
 
   async function getdailyRoutines() {
     await axios
@@ -27,8 +26,7 @@ function RoutinesPage() {
         setdailyRoutines(
           res.data.map((dailyRoutine) => ({
             ...dailyRoutine,
-            deleteDayRoutine,
-            // onDelete,onUpdate
+            deleteRoutine,
           }))
         )
       )
@@ -43,11 +41,11 @@ function RoutinesPage() {
 
   async function addNewDayRoutine(routine) {
     await axios
-      .post("/api/routines/day",routine, {
+      .post("/api/routines/day", routine, {
         withCredentials: true,
       })
       .then((res) => {
-        const newDailyRoutine = { ...res.data, deleteDayRoutine };
+        const newDailyRoutine = { ...res.data, deleteRoutine };
         console.log(res.data);
         setdailyRoutines([...dailyRoutines, newDailyRoutine]);
 
@@ -58,9 +56,21 @@ function RoutinesPage() {
 
   // 3. UPDATE DAILY ROUTINES
 
+  // async function editDayRoutine(updatedDayRoutine, itemId) {
+  //   await axios
+  //     .put(`/api/routines/${itemId}`, updatedDayRoutine, {
+  //       withCredentials: true,
+  //     })
+  //     .then((response) => {
+  //       console.log(response);
+  //       console.log("item is updated!");
+  //     })
+  //     .catch((err) => console.log(err));
+  // }
+
   // 4. DELETE DAILY ROUTINES
 
-  async function deleteDayRoutine(itemId) {
+  async function deleteRoutine(itemId) {
     await axios
       .delete(`/api/routines/${itemId}`, {
         withCredentials: true,
@@ -69,42 +79,53 @@ function RoutinesPage() {
         console.log(response);
         console.log("item is deleted!");
 
-        // window.location.reload();
-        console.log({ dailyRoutines });
-        const clone = [...dailyRoutines];
-        const filtered =
-          clone.filter((routine) => routine._id !== itemId) /
-          setdailyRoutines(filtered);
+        window.location.reload();
+        // console.log({ dailyRoutines });
+        // const clone = [...dailyRoutines];
+        // const filtered =
+        //   clone.filter((routine) => routine._id !== itemId) /
+        //   setdailyRoutines(filtered);
       });
   }
 
   // 5. LOAD ALL THE WEEKLY ROUTINES
 
-  function getWeeklyRoutines() {
-    const weekdayToday = moment().format("dddd");
-    axios
-      .get("/api/routines/week?day=" + weekdayToday, {
+  async function getweeklyRoutines() {
+    await axios
+      .get("/api/routines/week", {
         withCredentials: true,
       })
       .then((res) =>
-        setdailyRoutines(
-          res.data.map((dailyRoutine) => ({
-            ...dailyRoutine,
-            // onDelete,onUpdate
+        setweeklyRoutines(
+          res.data.map((weeklyRoutine) => ({
+            ...weeklyRoutine,
+            deleteRoutine,
           }))
         )
       )
       .catch((err) => console.log(err));
   }
 
-  // 6. ADD WEEKLY ROUTINES
-  // 7. UPDATE WEEKLY ROUTINES
-  // 8. DELETE WEEKLY ROUTINES
+  useEffect(() => {
+    getweeklyRoutines();
+  }, []);
 
-  // 9. LOAD ALL THE OTHER ROUTINES
-  // 10. ADD OTHER ROUTINES
-  // 11. UPDATE OTHER ROUTINES
-  // 12. DELETE OTHER ROUTINES
+  // 6. ADD WEEKLY ROUTINES
+  async function addNewWeekRoutine(routine) {
+    await axios
+      .post("/api/routines/week", routine, {
+        withCredentials: true,
+      })
+      .then((res) => {
+        const newWeeklyRoutine = { ...res.data, deleteRoutine };
+        console.log(res.data);
+        setweeklyRoutines([...weeklyRoutines, newWeeklyRoutine]);
+
+        console.log("new routine added");
+      })
+      .catch((err) => console.log(err));
+  }
+  
 
   return (
     <AppMaster>
@@ -112,7 +133,6 @@ function RoutinesPage() {
         <Box>
           <Heading>Daily routines</Heading>
 
-          {/* <Button onClick={onAddDaily}>Add new</Button> */}
           <DailyRoutines
             dailyRoutines={dailyRoutines}
             addNewDayRoutine={addNewDayRoutine}
@@ -121,8 +141,11 @@ function RoutinesPage() {
 
         <Box>
           <Heading>Weekly routines</Heading>
-          {/* <Button onClick={onAddWeekly}>Add new</Button> */}
-          {/* <WeeklyRoutines weeklyRoutines={weeklyRoutines} /> */}
+
+          <WeeklyRoutines
+            weeklyRoutines={weeklyRoutines}
+            addNewWeekRoutine={addNewWeekRoutine}
+          />
         </Box>
         {/* <Box>
           <Heading>Less frequent routines</Heading>
@@ -137,5 +160,3 @@ function RoutinesPage() {
     </AppMaster>
   );
 }
-
-export default RoutinesPage;

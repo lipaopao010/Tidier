@@ -52,6 +52,7 @@ router.patch("/routines/:id", (req, res) => {
     },
     { new: true, runValidators: true }
   ).then((updated) => {
+    console.log("updated in router")
     res.json({
       data: updated,
     });
@@ -75,14 +76,15 @@ router.delete("/routines/:id", (req, res) => {
 router.get("/routines/week", (req, res) => {
   let query = { user_id: req.user._id, type: "week" };
   if (req.query.day) {
-    query.dayofWeek = req.query.day.toLowerCase();
+    query.dayofWeek = req.query.day;
   }
-
+  console.log("get week routines")
   Routines.find(query, (error, data) => {
     if (error) {
       res.send(error);
     } else {
       res.json(data);
+      console.log(res);
     }
   });
 });
