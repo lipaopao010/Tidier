@@ -20,7 +20,7 @@ function RoutinesPage() {
 
   async function getdailyRoutines() {
     await axios
-      .get("http://localhost:3001/api/routines/day", {
+      .get("/api/routines/day", {
         withCredentials: true,
       })
       .then((res) =>
@@ -43,7 +43,7 @@ function RoutinesPage() {
 
   async function addNewDayRoutine(routine) {
     await axios
-      .post("http://localhost:3001/api/routines/day",routine, {
+      .post("/api/routines/day",routine, {
         withCredentials: true,
       })
       .then((res) => {
@@ -62,7 +62,7 @@ function RoutinesPage() {
 
   async function deleteDayRoutine(itemId) {
     await axios
-      .delete(`http://localhost:3001/api/routines/${itemId}`, {
+      .delete(`/api/routines/${itemId}`, {
         withCredentials: true,
       })
       .then((response) => {
@@ -83,7 +83,7 @@ function RoutinesPage() {
   function getWeeklyRoutines() {
     const weekdayToday = moment().format("dddd");
     axios
-      .get("http://localhost:3001/api/routines/week?day=" + weekdayToday, {
+      .get("/api/routines/week?day=" + weekdayToday, {
         withCredentials: true,
       })
       .then((res) =>

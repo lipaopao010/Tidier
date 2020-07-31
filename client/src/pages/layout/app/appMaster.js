@@ -11,7 +11,7 @@ function AppMaster(props) {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3001/api/current-user", {
+      .get("/api/current-user", {
         withCredentials: true,
       })
       .then((response) => {

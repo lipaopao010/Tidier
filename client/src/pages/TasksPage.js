@@ -21,7 +21,7 @@ function TasksPage() {
   function getWeeklyTasks() {
     const weekdayToday = moment().format("dddd");
     axios
-      .get("http://localhost:3001/api/routines/week?day=" + weekdayToday, {
+      .get("/api/routines/week?day=" + weekdayToday, {
         withCredentials: true,
       })
       .then((res) =>
@@ -42,7 +42,7 @@ function TasksPage() {
   // 1. LOAD ALL THE DAILY TASKS "UNDONE"--"UNDONE"
   async function getdailyTasks() {
     await axios
-      .get("http://localhost:3001/api/routines/day", {
+      .get("/api/routines/day", {
         withCredentials: true,
       })
       .then((res) =>
