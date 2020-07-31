@@ -6,7 +6,7 @@ const bodyParser = require("body-parser"); // form data
 const cookieParser = require("cookie-parser");
 const dotenv = require("dotenv");
 const cors = require("cors");
-const corsConfig = require('./config/cors');
+const corsConfig = require("./config/cors");
 const passport = require("passport");
 const connectDb = require("./config/database");
 
@@ -18,18 +18,13 @@ const app = express();
 
 connectDb();
 
-
-
-
 // Define middleware here
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser(process.env.SESSION_SECRET));
 app.use(express.urlencoded({ extended: true }));
-app.use(cors(corsConfig));
 app.use(express.json());
-
-
+app.use(cors(corsConfig));
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
@@ -37,37 +32,27 @@ if (process.env.NODE_ENV === "production") {
 
 app.use(
   session({
-      resave: true,
-      saveUninitialized: true,
-      secret: process.env.SESSION_SECRET,
-      cookie: {
-          secure: false, // not using https
-          maxAge: 1209600000,
-      }, // two weeks in milliseconds
-      store: new MongoStore({
-          url: process.env.MONGODB_URI,
-          autoReconnect: true,
-      }),
+    resave: true,
+    saveUninitialized: true,
+    secret: process.env.SESSION_SECRET,
+    cookie: {
+      secure: false, // not using https
+      maxAge: 1209600000,
+    }, // two weeks in milliseconds
+    store: new MongoStore({
+      url: process.env.MONGODB_URI,
+      autoReconnect: true,
+    }),
   })
 );
-
 app.use(passport.initialize());
 app.use(passport.session());
-
-
 
 // Add routes, both API and view
 
 // app.use("/api", passportConfig.authenticate('local'));
 
-
-app.use('/api',  routes);
-
-
-
-
-
-
+app.use("/api", routes);
 
 // Send every other request to the React app
 // Define any API routes before this runs

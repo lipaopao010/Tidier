@@ -2,17 +2,17 @@
 import React, { useState, useEffect } from "react";
 import "react-bulma-components/dist/react-bulma-components.min.css";
 import axios from "axios";
+import moment from "moment";
 
 import AppMaster from "./layout/app/appMaster";
-import FooterSection from "./../components/FooterSection";
-import { Box, Heading, Button } from "react-bulma-components";
 import DailyRoutines from "../components/DailyRoutines";
 import WeeklyRoutines from "../components/WeeklyRoutines";
-
-// this page will load all the routines for current user , will have "delete", "edit", "add" button.
+import FooterSection from "./../components/FooterSection";
+import { Box, Heading, Button } from "react-bulma-components";
 
 function RoutinesPage() {
   const [dailyRoutines, setdailyRoutines] = useState([]);
+  const [value, setValue] = useState("");
 
   // NEW FUNCTION TO ADD ROUTINES
 
@@ -41,7 +41,23 @@ function RoutinesPage() {
 
   // 2. ADD DAILY ROUTINES
 
+  async function addNewDayRoutine(routine) {
+    await axios
+      .post("http://localhost:3001/api/routines/day",routine, {
+        withCredentials: true,
+      })
+      .then((res) => {
+        const newDailyRoutine = { ...res.data, deleteDayRoutine };
+        console.log(res.data);
+        setdailyRoutines([...dailyRoutines, newDailyRoutine]);
+
+        console.log("new routine added");
+      })
+      .catch((err) => console.log(err));
+  }
+
   // 3. UPDATE DAILY ROUTINES
+
   // 4. DELETE DAILY ROUTINES
 
   async function deleteDayRoutine(itemId) {
@@ -53,17 +69,18 @@ function RoutinesPage() {
         console.log(response);
         console.log("item is deleted!");
 
-        window.location.reload();
+        // window.location.reload();
         console.log({ dailyRoutines });
-        //const clone = [...dailyRoutines]
-        //const filtered = clone.filter((routine) => routine._id !== itemId)
-        ///setdailyRoutines(filtered)
+        const clone = [...dailyRoutines];
+        const filtered =
+          clone.filter((routine) => routine._id !== itemId) /
+          setdailyRoutines(filtered);
       });
   }
 
   // 5. LOAD ALL THE WEEKLY ROUTINES
 
-  function getWeeklyTasks() {
+  function getWeeklyRoutines() {
     const weekdayToday = moment().format("dddd");
     axios
       .get("http://localhost:3001/api/routines/week?day=" + weekdayToday, {
@@ -79,7 +96,7 @@ function RoutinesPage() {
       )
       .catch((err) => console.log(err));
   }
-  
+
   // 6. ADD WEEKLY ROUTINES
   // 7. UPDATE WEEKLY ROUTINES
   // 8. DELETE WEEKLY ROUTINES
@@ -94,14 +111,18 @@ function RoutinesPage() {
       <>
         <Box>
           <Heading>Daily routines</Heading>
+
           {/* <Button onClick={onAddDaily}>Add new</Button> */}
-          <DailyRoutines dailyRoutines={dailyRoutines} />
+          <DailyRoutines
+            dailyRoutines={dailyRoutines}
+            addNewDayRoutine={addNewDayRoutine}
+          />
         </Box>
 
         <Box>
           <Heading>Weekly routines</Heading>
           {/* <Button onClick={onAddWeekly}>Add new</Button> */}
-          <WeeklyRoutines weeklyRoutines={weeklyRoutines} />
+          {/* <WeeklyRoutines weeklyRoutines={weeklyRoutines} /> */}
         </Box>
         {/* <Box>
           <Heading>Less frequent routines</Heading>

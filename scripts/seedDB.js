@@ -13,7 +13,7 @@ connectDb();
 
 
 
-const routinesSeed = [
+const routinesSeeds = [
   
   {
       type:"day",
@@ -113,7 +113,7 @@ const routinesSeed = [
 db.Routines.remove({})
   .then(() => db.Routines.insertMany(routinesSeed))
   .then(() => {
-    console.log(" dara seed records inserted!");
+    console.log(" data seed records inserted!");
     process.exit(0);
   })
   .catch(err => {

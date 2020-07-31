@@ -16,6 +16,7 @@ router.get("/routines/day", (req, res) => {
       res.send(error);
     } else {
       console.log("get user daily routines");
+      console.log(req.user);
       res.json(data);
     }
   });
@@ -35,9 +36,8 @@ router.post("/routines/day", (req, res) => {
     console.log({ created })
     console.log("daily routine is added above")
 
-    res.json({
-      data: created,
-    });
+    res.json(created)
+    
   });
 });
 

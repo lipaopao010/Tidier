@@ -1,9 +1,11 @@
 import React from "react";
-
-import { List, Box, Section } from "react-bulma-components";
 import DailyRoutineItem from "../DailyRoutineItem";
+import AddNew from "../AddNew";
+import { List, Box, Section } from "react-bulma-components";
 
-export default function DailyRoutines({dailyRoutines = []}) {
+
+
+export default function DailyRoutines({dailyRoutines = [],addNewDayRoutine}) {
   
 
   return (
@@ -22,6 +24,8 @@ export default function DailyRoutines({dailyRoutines = []}) {
             ))}
           </List.Item>
         </List>
+
+       <AddNew addNewDayRoutine={addNewDayRoutine}/>
       </Box>
     </Section>
   );
