@@ -13,7 +13,6 @@ import { Box, Heading, Button } from "react-bulma-components";
 export default function RoutinesPage() {
   const [dailyRoutines, setdailyRoutines] = useState([]);
   const [weeklyRoutines, setweeklyRoutines] = useState([]);
- 
 
   // 1. LOAD ALL THE DAILY ROUTINES--done
 
@@ -119,13 +118,13 @@ export default function RoutinesPage() {
       .then((res) => {
         const newWeeklyRoutine = { ...res.data, deleteRoutine };
         console.log(res.data);
+        console.log(newWeeklyRoutine);
         setweeklyRoutines([...weeklyRoutines, newWeeklyRoutine]);
 
         console.log("new routine added");
       })
       .catch((err) => console.log(err));
   }
-  
 
   return (
     <AppMaster>
@@ -147,13 +146,6 @@ export default function RoutinesPage() {
             addNewWeekRoutine={addNewWeekRoutine}
           />
         </Box>
-        {/* <Box>
-          <Heading>Less frequent routines</Heading>
-          <Button onClick={onAddWeekly}>Add new</Button> 
-          <OtherRoutineTotal 
-          otherRoutines={otherRoutines}
-          />
-        </Box> */}
 
         <FooterSection />
       </>

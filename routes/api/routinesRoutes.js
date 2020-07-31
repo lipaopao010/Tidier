@@ -84,7 +84,7 @@ router.get("/routines/week", (req, res) => {
       res.send(error);
     } else {
       res.json(data);
-      console.log(res);
+
     }
   });
 });
@@ -104,9 +104,7 @@ router.post("/routines/week", (req, res) => {
     console.log({ created })
     console.log("week routine is added above")
 
-    res.json({
-      data: created,
-    });
+    res.json(created);
   });
 });
 // 7. UPDATE WEEKLY ROUTINES--?

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "react-bulma-components/dist/react-bulma-components.min.css";
 import AppMaster from "./layout/app/appMaster";
-import { Box, Heading} from "react-bulma-components";
+import { Box, Heading } from "react-bulma-components";
 import FooterSection from "../components/FooterSection";
 import DailyRoutines from "../components/DailyRoutines";
 import WeeklyRoutines from "../components/WeeklyRoutines";
@@ -33,11 +33,21 @@ function TasksPage() {
       .catch((err) => console.log(err));
   }
 
-
   // functions for the status
+  //once clicked "done" button, the "lastCompletedAt" will be recorded into the datatbase
+  // when load the daily tasks, will search for
+  // if the lastcompleted > 12am today(startOfday), means done, do not load
+  // if the lastcompletedat < 12am today, means still undone, load,
 
-  let dayBoundary = moment().startOf("day").toDate()
-  //   return moment(this.lastCompletedAt) > boundary
+  // so filter anything (lastcompletedat<12am)
+
+  // function markCompleted(){
+  let dayBoundary = moment().startOf("day").toDate();
+  console.log(dayBoundary);
+
+  //  return moment(this.lastCompletedAt) > dayBoundary
+  // }
+
   // TODAY'S TASKS:
   // 1. LOAD ALL THE DAILY TASKS "UNDONE"--"UNDONE"
   async function getdailyTasks() {
@@ -47,13 +57,20 @@ function TasksPage() {
       })
       .then((res) => {
         const undoneDayTasks = res.data.filter(
-          (dayTask) => (dayTask.status = "undone")
-        );
+          (dayTask) => (dayTask.lastCompletedAt < moment().startOf("day").toDate())
+         );
 
-        //console.log(undoneDayTasks),
+        if (moment(res.data[0].lastCompletedAt).isBefore(dayBoundary)) {
+          console.log("befoore");
+        }else{
+
+        console.log("false")
+        }
+
+        //console.log(undoneDayTasks)
 
         setdailyTasks(
-          undoneDayTasks.map((dailyTask) => ({
+          res.data.map((dailyTask) => ({
             ...dailyTask,
 
             onComplete,
@@ -77,19 +94,18 @@ function TasksPage() {
       .get("/api/routines/week?day=" + weekdayToday, {
         withCredentials: true,
       })
-      .then((res) =>{
-      console.log("get weekly task for today");
-      console.log(res.data)
+      .then((res) => {
+        console.log("get weekly task for today");
+        console.log(res.data);
         setweeklyTasks(
           res.data.map((weeklyTask) => ({
             ...weeklyTask,
-            
+            onComplete
           }))
-        )}
-      )
+        );
+      })
       .catch((err) => console.log(err));
   }
-  // 3. LOAD ALL OTHER ROUTINES "UNDONE" --"UNDONE" & OF CURRENT DAY
 
   // TASKS FOR LATER:
   // 1. ALL WEEKLY TASKS "LATER"
@@ -102,7 +118,9 @@ function TasksPage() {
         <WeeklyRoutines weeklyRoutines={weeklyTasks} />
       </Box>
 
-      <Box><Heading>Task for later</Heading></Box>
+      <Box>
+        <Heading>Task for later</Heading>
+      </Box>
 
       <FooterSection />
     </AppMaster>
