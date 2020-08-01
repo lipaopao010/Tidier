@@ -2,13 +2,13 @@
 import React, { useState, useEffect } from "react";
 import "react-bulma-components/dist/react-bulma-components.min.css";
 import axios from "axios";
-import moment from "moment";
+//import moment from "moment";
 
 import AppMaster from "./layout/app/appMaster";
 import DailyRoutines from "../components/DailyRoutines";
 import WeeklyRoutines from "../components/WeeklyRoutines";
 import FooterSection from "./../components/FooterSection";
-import { Box, Heading, Button } from "react-bulma-components";
+import { Box, Heading, Content } from "react-bulma-components";
 
 export default function RoutinesPage() {
   const [dailyRoutines, setdailyRoutines] = useState([]);
@@ -129,6 +129,17 @@ export default function RoutinesPage() {
   return (
     <AppMaster>
       <>
+        <Box>
+          <Heading align="center">
+            Manage all your routines in this page
+          </Heading>
+          <Content align="center">
+            <p>
+              you can delete and add new routines. They will be updated in your
+              task page
+            </p>
+          </Content>
+        </Box>
         <Box>
           <Heading>Daily routines</Heading>
 

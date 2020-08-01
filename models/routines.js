@@ -107,10 +107,14 @@ routinesSchema.virtual("status").get(function () {
 // for the daily and weekly tasks// lastCompledAt will be updated once clicked " DONE " button.
 // check if last completed is after boundary, if yes, that means task has completed
 
-routinesSchema.virtual("isCompleted").get(function () {
-  let boundary = moment().startOf("day").toDate();
-  return moment(this.lastCompletedAt) > boundary
-});
+// routinesSchema.virtual("isCompleted").get(function () {
+//   let boundary = moment().startOf(this.type).toDate();
+//   if (!lastCompletedAt){
+//     return false
+//   }else {
+//   return moment(this.lastCompletedAt).toDate() > boundary
+//   }
+// });
 
 const Routines = mongoose.model("Routines", routinesSchema);
 
