@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "react-bulma-components/dist/react-bulma-components.min.css";
 import AppMaster from "./layout/app/appMaster";
-import { Box, Heading } from "react-bulma-components";
+import { Box, Heading, Content } from "react-bulma-components";
 import FooterSection from "../components/FooterSection";
 import DailyRoutines from "../components/DailyRoutines";
 import WeeklyRoutines from "../components/WeeklyRoutines";
@@ -16,7 +16,7 @@ function TasksPage() {
   //   apiurl = '/'
   // }
 
-  //FUNCTIONS FOR THIS PAGE
+  //FUNCTIONS FOR THE "DONE" BUTTON
   async function onComplete(itemId) {
     await axios
       .patch(
@@ -39,7 +39,7 @@ function TasksPage() {
   // if the lastcompleted > 12am today(startOfday), means done, do not load
   // if the lastcompletedat < 12am today, means still undone, load,
 
-  // so filter anything (lastcompletedat<12am)
+  // so need anythingn with (lastcompletedat<12am)
 
   // function markCompleted(){
   let dayBoundary = moment().startOf("day").toDate();
@@ -56,24 +56,53 @@ function TasksPage() {
         withCredentials: true,
       })
       .then((res) => {
-        const undoneDayTasks = res.data.filter(
-          (dayTask) => (dayTask.lastCompletedAt < moment().startOf("day").toDate())
-         );
 
-        if (moment(res.data[0].lastCompletedAt).isBefore(dayBoundary)) {
-          console.log("befoore");
-        }else{
+        const undoneDayTasks = res.data;
+        console.log(undoneDayTasks);
+        
+        
 
-        console.log("false")
-        }
+        // undoneDayTasks.forEach(element => {
+        //   if(undoneDayTasks.lastCompletedAt = "undefiend" )
+          
+        // });
+        //if (undoneDayTasks[i].lastCompletedAt = "undefined")
+        
 
-        //console.log(undoneDayTasks)
+      //   const undoneDayTasksNew = undoneDayTasks.filter(
+      //    dayTask => dayTask.lastCompletedAt = "undefined"
+      // );
+      //     console.log(undoneDayTasksNew);
+        //  if (moment(res.data[i].lastCompletedAt).isBefore(dayBoundary)){
+
+        //  }
+        // undoneDayTasks.map((newone)=>{console.log(newone.lastCompletedAt)});
+        // console.log(undoneDayTasks[0].lastCompletedAt);
+        // if(undoneDayTasks[1].lastCompletedAt = "undefined"){
+        //   console.log("true")
+        // }
+
+        // let new1 = undoneDayTasks[0].lastCompletedAt;
+        // console.log(moment(new1).toDate());
+        // let new2 = moment(new1).toDate();
+        
+        // if (new2 > dayBoundary) {
+        //   console.log("after");
+        // }
+        // if ((moment(res.data[1].lastCompletedAt).isBefore(dayBoundary))) {
+        //   console.log("befoore");
+        // }else{
+
+        // console.log("false")
+        // }
+
+        // console.log(undoneDayTasks);
 
         setdailyTasks(
-          res.data.map((dailyTask) => ({
+          undoneDayTasks.map((dailyTask) => ({
             ...dailyTask,
 
-            onComplete,
+            // onComplete,
           }))
         );
         console.log("get daily tasks");
@@ -100,7 +129,7 @@ function TasksPage() {
         setweeklyTasks(
           res.data.map((weeklyTask) => ({
             ...weeklyTask,
-            onComplete
+            // onComplete,
           }))
         );
       })
@@ -113,6 +142,13 @@ function TasksPage() {
 
   return (
     <AppMaster>
+      <Box>
+        <Heading align="center">Welcome to today's task</Heading>
+        <Content align="center">
+          <p>Don't stress! Set your timer and start from somewhere!</p>
+        </Content>
+      </Box>
+
       <Box>
         <DailyRoutines dailyRoutines={dailyTasks} />
         <WeeklyRoutines weeklyRoutines={weeklyTasks} />
