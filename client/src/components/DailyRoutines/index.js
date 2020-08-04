@@ -3,6 +3,7 @@ import DailyRoutineItem from "../DailyRoutineItem";
 import AddNewDay from "../AddNewDay";
 import { List, Box, Section } from "react-bulma-components";
 
+
 export default function DailyRoutines({
   dailyRoutines = [],
   addNewDayRoutine,
@@ -12,8 +13,8 @@ export default function DailyRoutines({
     // ONLY LOAD THE DATA FOR THE CURRENT USER
 
     <Section>
-      <Box>
-        <List>
+      <Box className = "dayroutines">
+        <List className = "daylists">
           <List.Item>
             {dailyRoutines.map((dailyRoutine) => (
               <DailyRoutineItem key={dailyRoutine.id} {...dailyRoutine} />

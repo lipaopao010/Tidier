@@ -1,5 +1,8 @@
 import React, { Component } from "react";
-//import ReactDOM from "react-dom";
+//import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+//import { fa-info-circle } from '@fortawesome/free-solid-svg-icons'
+import { FaInfoCircle } from "react-icons/fa";
+import { FiInfo } from "react-icons/fi"
 import { Modal, Section, Button } from "react-bulma-components";
 
 class DetailSection extends Component {
@@ -14,23 +17,12 @@ class DetailSection extends Component {
   };
 
   render() {
-    // const active = this.state.isModal ? "is-active" : "";
-
     return (
       <>
         <Modal
           show={this.state.isModal}
           onClose={() => this.setState({ isModal: false })}
         >
-          <Modal.Card>
-            <Modal.Card.Head>
-              <Modal.Card.Title> Routine details</Modal.Card.Title>
-              {/* <Button
-                onClick={this.handleClick}
-                className="delete"
-                aria-label="close"/> */}
-            </Modal.Card.Head>
-          </Modal.Card>
           <Modal.Content>
             <Section style={{ backgroundColor: "white" }}>
               {this.props.details}
@@ -38,7 +30,8 @@ class DetailSection extends Component {
           </Modal.Content>
         </Modal>
 
-        <Button onClick={this.handleClick}>details</Button>
+        {/* <Button onClick={this.handleClick}><FaInfoCircle/></Button> */}
+        <FiInfo onClick={this.handleClick}/>
       </>
     );
   }

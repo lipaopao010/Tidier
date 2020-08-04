@@ -3,9 +3,10 @@ import React from 'react';
 import { Navbar } from 'react-bulma-components';
 import logo from "../../assets/img/Tidier-Logo.png";
 
+
 export default function Nav(){
     return (
-      <Navbar>
+      <Navbar className = "navcontent">
         <Navbar.Brand>
           <Navbar.Item renderAs="a" href="/">
             <img src={logo} alt="Tidier logo" width="112" height="28" />

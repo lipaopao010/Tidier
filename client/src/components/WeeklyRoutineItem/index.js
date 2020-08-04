@@ -1,7 +1,8 @@
 import React from "react";
 import { Button, Columns } from "react-bulma-components";
 import DetailSection from "../DetailSection";
-
+import { RiDeleteBin5Line } from "react-icons/ri";
+import { MdDone } from "react-icons/md";
 export default function WeeklyRoutineItem({
   _id,
   dayofWeek,
@@ -13,11 +14,11 @@ export default function WeeklyRoutineItem({
   onComplete,
 }) {
   return (
-    <Columns>
-      <Columns.Column size={2}>
+    <Columns breakpoint="mobile">
+      <Columns.Column size ={3}>
         <strong> {dayofWeek} </strong>
       </Columns.Column>
-      <Columns.Column size={6}>
+      <Columns.Column size={5}>
         <p className="bd-notification">{name}</p>
         <DetailSection details={details}/>
         
@@ -30,7 +31,7 @@ export default function WeeklyRoutineItem({
               onComplete(_id);
             }}
           >
-            DONE
+            <MdDone/>
           </Button>
         )}
         {onUpdate && (
@@ -50,7 +51,7 @@ export default function WeeklyRoutineItem({
               deleteRoutine(_id);
             }}
           >
-            DELETE
+            <RiDeleteBin5Line/>
           </Button>
         )}
       </Columns.Column>

@@ -7,6 +7,7 @@ import DailyRoutines from "../components/DailyRoutines";
 import WeeklyRoutines from "../components/WeeklyRoutines";
 import axios from "axios";
 import moment from "moment";
+import "./TasksPage.css";
 
 function TasksPage() {
   const [dailyTasks, setdailyTasks] = useState([]);
@@ -37,7 +38,7 @@ function TasksPage() {
   //once clicked "done" button, the "lastCompletedAt" will be recorded into the datatbase
   // when load the daily tasks, will search for
   // if the lastcompleted > 12am today(startOfday), means done, do not load
-  // if the lastcompletedat < 12am today, means still undone, load,
+  // if the lastcompleted < 12am today, means still undone, load,
 
   // so need anythingn with (lastcompletedat<12am)
 
@@ -49,60 +50,38 @@ function TasksPage() {
   // }
 
   // TODAY'S TASKS:
-  // 1. LOAD ALL THE DAILY TASKS "UNDONE"--"UNDONE"
+  // 1. LOAD ALL THE DAILY TASKS "UNDONE"
   async function getdailyTasks() {
     await axios
       .get("/api/routines/day", {
         withCredentials: true,
       })
       .then((res) => {
-
         const undoneDayTasks = res.data;
         console.log(undoneDayTasks);
-        
-        
 
-        // undoneDayTasks.forEach(element => {
-        //   if(undoneDayTasks.lastCompletedAt = "undefiend" )
-          
-        // });
-        //if (undoneDayTasks[i].lastCompletedAt = "undefined")
-        
+        const undoneDayTasksNew = undoneDayTasks.filter(
+          (dayTask) =>
+            dayTask.lastCompletedAt === undefined 
+            // dayTask.lastCompletedAt < dayBoundary
+        );
+        console.log(undoneDayTasksNew);
+        //console.log(undoneDayTasksDone[1].lastCompletedAt)
+          console.log(moment(undoneDayTasks[1].lastCompletedAt).toDate())
 
-      //   const undoneDayTasksNew = undoneDayTasks.filter(
-      //    dayTask => dayTask.lastCompletedAt = "undefined"
-      // );
-      //     console.log(undoneDayTasksNew);
-        //  if (moment(res.data[i].lastCompletedAt).isBefore(dayBoundary)){
-
-        //  }
-        // undoneDayTasks.map((newone)=>{console.log(newone.lastCompletedAt)});
-        // console.log(undoneDayTasks[0].lastCompletedAt);
-        // if(undoneDayTasks[1].lastCompletedAt = "undefined"){
-        //   console.log("true")
-        // }
-
-        // let new1 = undoneDayTasks[0].lastCompletedAt;
-        // console.log(moment(new1).toDate());
-        // let new2 = moment(new1).toDate();
-        
-        // if (new2 > dayBoundary) {
-        //   console.log("after");
-        // }
-        // if ((moment(res.data[1].lastCompletedAt).isBefore(dayBoundary))) {
-        //   console.log("befoore");
-        // }else{
-
-        // console.log("false")
-        // }
-
-        // console.log(undoneDayTasks);
+          if(moment(undoneDayTasks[1].lastCompletedAt).toDate() > dayBoundary){
+            console.log('TRUE')
+          }
+        const undoneDayTasksDone= undoneDayTasks.filter(
+          (dayTask) => moment(dayTask.lastCompletedAt).toDate() > dayBoundary
+        );
+        console.log("undoneDayTaskDone: ", undoneDayTasksDone)
 
         setdailyTasks(
-          undoneDayTasks.map((dailyTask) => ({
+          undoneDayTasksNew.map((dailyTask) => ({
             ...dailyTask,
 
-            // onComplete,
+            //onComplete,
           }))
         );
         console.log("get daily tasks");
@@ -129,7 +108,7 @@ function TasksPage() {
         setweeklyTasks(
           res.data.map((weeklyTask) => ({
             ...weeklyTask,
-            // onComplete,
+            //onComplete,
           }))
         );
       })
@@ -143,9 +122,9 @@ function TasksPage() {
   return (
     <AppMaster>
       <Box>
-        <Heading align="center">Welcome to today's task</Heading>
+        <Heading align="center" className = "RoutineTitle" >TODAY'S TASKS</Heading>
         <Content align="center">
-          <p>Don't stress! Set your timer and start from somewhere!</p>
+          <p className="text">Don't stress! Set your timer and start from somewhere!</p>
         </Content>
       </Box>
 

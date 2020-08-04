@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 
-import { Button, Form } from 'react-bulma-components';
+import { Button, Form, Box } from 'react-bulma-components';
 const { Input, Field, Control, Label,Select} = Form;
 
 
@@ -18,12 +18,12 @@ export default function AddNewWeek({addNewWeekRoutine}) {
     };
   
     return (
-
+      <Box className = "daylists">
         <Field >
             <Control>
-              <Input placeholder="add new routine name" value={name}
+              <Input placeholder="ROUTINE NAME" value={name}
           onChange={e => setName(e.target.value)}/>
-          <Input placeholder="add details for abouv routine" value={details}
+          <Input placeholder="ROUTINE DETAILS" value={details}
           onChange={e => setDetails(e.target.value)} />
           <Label>Which day to complete this routine?</Label>
         <Control>
@@ -41,4 +41,5 @@ export default function AddNewWeek({addNewWeekRoutine}) {
               <Button type="primary" onClick={handleSubmit}>Add New Weekly Routine</Button>
             </Control>
           </Field>
+          </Box>
     )}
