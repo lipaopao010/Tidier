@@ -7,7 +7,7 @@ import DailyRoutines from "../components/DailyRoutines";
 import WeeklyRoutines from "../components/WeeklyRoutines";
 import axios from "axios";
 import moment from "moment";
-import "./TasksPage.css";
+import "./mainstyle.css";
 
 function TasksPage() {
   const [dailyTasks, setdailyTasks] = useState([]);
@@ -124,6 +124,7 @@ function TasksPage() {
       <Box>
         <Heading align="center" className = "RoutineTitle" >TODAY'S TASKS</Heading>
         <Content align="center">
+        <p>Today is {moment().format("dddd, MMMM Do YYYY")}</p>
           <p className="text">Don't stress! Set your timer and start from somewhere!</p>
         </Content>
       </Box>

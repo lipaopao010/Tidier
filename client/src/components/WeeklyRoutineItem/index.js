@@ -19,9 +19,9 @@ export default function WeeklyRoutineItem({
         <strong> {dayofWeek} </strong>
       </Columns.Column>
       <Columns.Column size={5}>
-        <p className="bd-notification">{name}</p>
+        <p className="bd-notification">{name}
         <DetailSection details={details}/>
-        
+        </p>
       </Columns.Column>
 
       <Columns.Column size={1}>

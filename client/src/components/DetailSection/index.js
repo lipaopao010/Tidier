@@ -1,7 +1,5 @@
 import React, { Component } from "react";
-//import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-//import { fa-info-circle } from '@fortawesome/free-solid-svg-icons'
-import { FaInfoCircle } from "react-icons/fa";
+// import { FaInfoCircle } from "react-icons/fa";
 import { FiInfo } from "react-icons/fi"
 import { Modal, Section, Button } from "react-bulma-components";
 

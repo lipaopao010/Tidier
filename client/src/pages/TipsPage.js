@@ -3,7 +3,7 @@ import "react-bulma-components/dist/react-bulma-components.min.css";
 import AppMaster from "./layout/app/appMaster";
 import { Box, Content } from "react-bulma-components";
 import FooterSection from "../components/FooterSection";
-import "./TipsPage.css";
+import "./mainstyle.css";
 
 function TipsPage() {
   return (

@@ -1,0 +1,89 @@
+.RoutineTitle, .text {
+  font-family: "Pacifico", cursive;
+  color: #5d730e;
+}
+
+.navcontent {
+  font-family: "Pacifico", cursive;
+}
+.tips {
+  background-image: url(../assets/img/flower.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+  width: 90%;
+}
+.formbutton {
+  background-color: #97b627;
+  font-family: "Lora", serif;
+}
+.forms {
+  background-image: url(../assets/img/purple-flower.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+  width: 90%;
+}
+.box {
+  margin: auto;
+  font-family: "Lora", serif;
+}
+.content1 {
+  background-color: #fef8f8;
+}
+.content h1 {
+  font-family: "Pacifico", cursive;
+  color: #5d730e;
+}
+
+.dayroutines {
+  background-image: url(../assets/img/pinkflower.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+  width: 100%;
+}
+
+.maintitle, .introcontent {
+    color: #5d730e;
+    font-family: 'Lora', serif;
+}
+
+.introbutton {
+    color: #f59e9b;
+    font-family: 'Lora', serif;
+
+}
+
+
+
+.heading1 {
+  font-family: "Pacifico", cursive;
+  color: #5d730e;
+  margin-bottom: 0em;
+}
+
+.daylists {
+  background-color: #fef8f8;
+  margin-bottom: 1rem;
+}
+
+.RoutineTitle {
+  font-family: "Pacifico", cursive;
+  color: #5d730e;
+}
+.section {
+  padding: 1rem;
+}
+.intro {
+    background-color: #fac0be;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+  width: 100%;
+
+}

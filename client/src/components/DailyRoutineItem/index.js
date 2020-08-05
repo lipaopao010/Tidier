@@ -14,8 +14,10 @@ export default function DailyRoutineItem({
   return (
     <Columns breakpoint="mobile">
       <Columns.Column size={8}>
-        <p className="bd-notification">{name}</p>
+        <p className="bd-notification">{name} 
         <DetailSection details={details} />
+        </p>
+        
       </Columns.Column>
 
       <Columns.Column size={1}>

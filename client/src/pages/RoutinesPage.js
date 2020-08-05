@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import "react-bulma-components/dist/react-bulma-components.min.css";
 import axios from "axios";
 //import moment from "moment";
-import "./RoutinesPage.css";
+import "./mainstyle.css";
 
 import AppMaster from "./layout/app/appMaster";
 import DailyRoutines from "../components/DailyRoutines";

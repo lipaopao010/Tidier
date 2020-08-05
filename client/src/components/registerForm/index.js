@@ -57,7 +57,7 @@ function RegisterForm() {
   };
 
   return (
-    <Box>
+    <Box className= "tips">
       <Container>
         <Card>
           <Card.Header>
@@ -99,7 +99,7 @@ function RegisterForm() {
           <Card.Footer>
             <Field kind="group">
               <Control>
-                <Button type="primary"   color="primary" onClick={onSubmit}>
+                <Button type="primary" className="formbutton" onClick={onSubmit}>
                   Register
                 </Button>
               </Control>

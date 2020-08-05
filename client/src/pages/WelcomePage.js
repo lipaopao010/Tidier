@@ -5,13 +5,15 @@ import { Box, Heading } from "react-bulma-components";
 import FooterSection from "../components/FooterSection";
 import HeroSection from "../components/HeroSection";
 import PublicMaster from "./layout/public/publicMaster";
+import "./mainstyle.css"
 
 function WelcomePage() {
   return (
     <PublicMaster style={{ height: "100%" }}>
       <>
         <HeroSection />
-        <Box>
+        <Box className="intro">
+          <Box className = "introcontent">
           <Heading subtitle size={10} align="center">
             About Tidier
           </Heading>
@@ -27,6 +29,7 @@ function WelcomePage() {
             The room will get cleaner and tidier, but only takes small amount of
             time!
           </p>
+          </Box>
         </Box>
 
         <FooterSection />

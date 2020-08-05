@@ -18,30 +18,26 @@ export default function HeroSection() {
         <Hero.Body>
           <Container>
             <Columns>
-              <Columns.Column size={4}>
-                <p className="bd-notification is-success"></p>
-              </Columns.Column>
-              <Columns.Column size={4}>
+              
+              <Columns.Column >
                 <p className="bd-notification is-success welcome1">
-                  <Heading align="center">Make your house tidier</Heading>
+                  <Heading align="center" className="maintitle">TIDIER HOME FROM HERE</Heading>
 
-                  <Heading subtitle size={6} align="center">
+                  {/* <Heading subtitle size={6} align="center">
                     Today is {moment().format("dddd, MMMM Do YYYY")}
-                  </Heading>
+                  </Heading> */}
 
                   <p align="center">
-                    <Button align="center" renderAs="a" href="/register">
-                      Register
+                    <Button className="introbutton" align="center" renderAs="a" href="/register">
+                      REGISTER
                     </Button>
-                    <Button align="center" renderAs="a" href="/login">
-                      Login here
+                    <Button className="introbutton" align="center" renderAs="a" href="/login">
+                      LOGIN
                     </Button>
                   </p>
                 </p>
               </Columns.Column>
-              <Columns.Column size={4}>
-                <p className="bd-notification is-success"></p>
-              </Columns.Column>
+              
             </Columns>
           </Container>
         </Hero.Body>

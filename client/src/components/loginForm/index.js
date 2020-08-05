@@ -64,7 +64,7 @@ function LoginForm() {
 
   
   return (
-    <Box>
+    <Box className= "tips">
       <Container>
         <Card>
           <Card.Header>
@@ -100,7 +100,7 @@ function LoginForm() {
           <Card.Footer>
             <Field kind="group">
               <Control>
-                <Button   color="primary" type="primary" onClick={onSubmit}>
+                <Button   className="formbutton" type="primary" onClick={onSubmit}>
                   Log in
                 </Button>
               </Control>
