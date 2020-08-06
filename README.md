@@ -6,19 +6,19 @@ Tidier is an application to help the user organise daily chores.
 
 ## Welcome Page
 
-The user needs to register or login\
+The user needs to register or login
 
 ![screenshot](screenshots/welcome.png)
 
 ## Tasks Page
 
-This is the page to display today's dates and tasks\
+This is the page to display today's dates and tasks
 
 ![screenshot](screenshots/tasks.png)
 
 ## Routines Page
 
-This is the page where the user can manage their daily and weekly routines\
+This is the page where the user can manage their daily and weekly routines
 
 ![screenshot](screenshots/routines.png)
 ## Usage
