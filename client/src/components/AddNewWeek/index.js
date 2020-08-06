@@ -21,14 +21,14 @@ export default function AddNewWeek({addNewWeekRoutine}) {
       <Box className = "daylists">
         <Field >
             <Control>
-              <Input placeholder="ROUTINE NAME" value={name}
+              <Input className ="add" placeholder="ROUTINE NAME" value={name}
           onChange={e => setName(e.target.value)}/>
-          <Input placeholder="ROUTINE DETAILS" value={details}
+          <Input className ="add" placeholder="ROUTINE DETAILS" value={details}
           onChange={e => setDetails(e.target.value)} />
           <Label>Which day to complete this routine?</Label>
         <Control>
           <Select value={dayofWeek} onChange={e => setdayofWeek(e.target.value)}>
-            <option>Monday</option>
+            <option >Monday</option>
             <option>Tuesday</option>
             <option>Wednesday</option>
             <option>Thursday</option>
@@ -38,7 +38,7 @@ export default function AddNewWeek({addNewWeekRoutine}) {
 
           </Select>
         </Control>
-              <Button type="primary" onClick={handleSubmit}>Add New Weekly Routine</Button>
+              <Button className ="add" type="primary" onClick={handleSubmit}>Add New Weekly Routine</Button>
             </Control>
           </Field>
           </Box>

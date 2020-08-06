@@ -8,16 +8,15 @@ export default function DailyRoutineItem({
   name,
   details,
   deleteRoutine,
-  editDayRoutine,
   onComplete,
 }) {
   return (
     <Columns breakpoint="mobile">
       <Columns.Column size={8}>
-        <p className="bd-notification">{name} 
-        <DetailSection details={details} />
+        <p className="bd-notification">
+          {name}
+          <DetailSection details={details} />
         </p>
-        
       </Columns.Column>
 
       <Columns.Column size={1}>
@@ -30,7 +29,6 @@ export default function DailyRoutineItem({
             <MdDone />
           </Button>
         )}
-        {/* {editDayRoutine &&<Button onClick={()=>{editDayRoutine(_id)}}>EDIT</Button>} */}
       </Columns.Column>
       <Columns.Column size={1}>
         {deleteRoutine && (
@@ -39,7 +37,7 @@ export default function DailyRoutineItem({
               deleteRoutine(_id);
             }}
           >
-            <RiDeleteBin5Line/>
+            <RiDeleteBin5Line />
           </Button>
         )}
       </Columns.Column>

@@ -19,13 +19,13 @@ export default function AddNewDay({addNewDayRoutine}) {
   
     return (
         <Box className = "daylists">
-        <Field >
+        <Field className ="add">
             <Control>
-              <Input placeholder="ROUTINE NAME " value={name}
+              <Input className ="add" placeholder="ROUTINE NAME " value={name}
           onChange={e => setName(e.target.value)}/>
-          <Input placeholder="ROUTINE DETAILS" value={details}
+          <Input className ="add" placeholder="ROUTINE DETAILS" value={details}
           onChange={e => setDetails(e.target.value)} />
-              <Button type="primary" onClick={handleSubmit}>Add New Daily Routine</Button>
+              <Button className ="add" type="primary" onClick={handleSubmit}>Add New Daily Routine</Button>
             </Control>
           </Field>
           </Box>

@@ -134,9 +134,9 @@ function TasksPage() {
         <WeeklyRoutines weeklyRoutines={weeklyTasks} />
       </Box>
 
-      <Box>
+      {/* <Box>
         <Heading>Task for later</Heading>
-      </Box>
+      </Box> */}
 
       <FooterSection />
     </AppMaster>
