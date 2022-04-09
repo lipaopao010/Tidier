@@ -34,7 +34,7 @@
     "faker": "^4.1.0",
     "if-env": "^1.0.4",
     "lodash": "^4.17.19",
-    "moment": "^2.27.0",
+    "moment": "^2.29.2",
     "mongoose": "^5.9.25",
     "moongoose": "0.0.5",
     "nodemon": "^2.0.4",
